@@ -1,0 +1,45 @@
+experiment_name: guided_synthesis_validation_v6.1
+description: "Validates a safety envelope synthesized via Guided Learning, where the learning process is augmented with artificial negative samples embodying core safety invariants."
+replications: 5
+simulation_parameters:
+  total_tasks_to_process: 100
+  parameter_matrix:
+    q_max: [5, 10, 15]
+    trap_rate: [0.25, 0.50, 0.75]
+    M: [5, 10]
+
+providers:
+  lmstudio_main:
+    type: LMStudioProvider
+    max_concurrency: 15
+    rate_limit_rps: 15
+    api_config:
+      base_url: "http://0.0.0.0:1234/v1"
+      temperature: 0.5
+      max_tokens: 512
+      model_name_override: "Local"
+
+  lmstudio_remote_qwen:
+    type: LMStudioProvider
+    max_concurrency: 15
+    rate_limit_rps: 15
+    api_config:
+      base_url: "http://0.0.0.0:1234/v1"
+      temperature: 0.5
+      max_tokens: 512
+      model_name_override: "Remote"
+
+agents_to_run:
+  - type: HA
+  - type: BA
+    models:
+      - provider: lmstudio_main
+      - provider: lmstudio_remote_qwen
+  - type: OMA
+    models:
+      - provider: lmstudio_main
+      - provider: lmstudio_remote_qwen
+  - type: OMA_Synth
+    models:
+      - provider: lmstudio_main
+      - provider: lmstudio_remote_qwen

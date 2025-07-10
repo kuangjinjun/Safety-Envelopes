@@ -1,0 +1,5 @@
+Comparison,Metric,BA_Remote_Mean,OMA_Synth_Remote_Mean,P-Value,Significant (p<0.05),HA_heuristic_Mean,BA_Local_Mean,OMA_Synth_Local_Mean
+BA_Remote vs OMA_Synth_Remote,Violation Rate,0.6934,0.0526,0.0,True,,,
+HA_heuristic vs OMA_Synth_Remote,Violation Rate,,0.0526,0.0,True,0.0,,
+BA_Local vs OMA_Synth_Local,Violation Rate,,,0.0,True,,0.2646,0.0007
+HA_heuristic vs OMA_Synth_Local,Violation Rate,,,0.0143,True,0.0,,0.0007

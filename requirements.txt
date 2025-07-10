@@ -1,0 +1,10 @@
+httpx[http2]
+pandas
+numpy
+matplotlib
+seaborn
+scipy
+pyyaml
+tqdm
+Jinja2
+scikit-learn
